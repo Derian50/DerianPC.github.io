@@ -62,6 +62,21 @@ window.onmousemove = function(e){
 		canvas.style.cursor="auto";
 	}
 }
+window.ontouchmove = function(e){
+	if(e.changedTouches[0].clientY > 550){
+	mouse.y = e.changedTouches[0].clientY;
+	xCucumber = e.changedTouches[0].clientX-36;
+	mouse.update();
+	}
+}
+
+window.ontouchstart = function(){
+	mouseDown = true;
+}
+window.ontouchend = function(){
+	mouseDown = false;
+	mouse.oldY = 9999;
+}
 var drawCucumber = function(){
 	ctx.drawImage(imgcucumber,xCucumber,yCucumber,74,250);
 }
