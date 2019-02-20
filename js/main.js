@@ -26,6 +26,13 @@ imgJIOX_lose.src = 'img/JIOX_lose.jpg';
 
 ctx.fillStyle = "#ffff00"
 
+
+var fullwidth = 0;
+if(screen.width > width){
+	fullwidth = (screen.width-width)/2;
+}
+
+
 var mouse = {
 	y : 2,
 
@@ -44,7 +51,9 @@ var powerCucumber = -700;
 var xCucumber = 0,
 	yCucumber = height-250;
 	mouseDown = false;
-window.onmousedown = function(){
+window.onmousedown = function(e){
+
+	fullScreen(canvas);
 	mouseDown = true;
 }
 window.onmouseup = function(){
@@ -78,11 +87,11 @@ window.ontouchend = function(){
 	mouse.oldY = 9999;
 }
 var drawCucumber = function(){
-	ctx.drawImage(imgcucumber,xCucumber,yCucumber,74,250);
+	ctx.drawImage(imgcucumber,xCucumber-fullwidth,yCucumber,74,250);
 }
 var drawPowerSpeed = function(){
 	ctx.fillStyle = "yellow";
-	ctx.fillRect(canvas.width-60, 350-powerCucumber/100, 50, powerCucumber/100);
+	ctx.fillRect(canvas.width-60, 350-powerCucumber/200, 50, powerCucumber/200);
 }
 var arrBulletX = [undefined],
 	arrBulletY = [undefined];
@@ -108,11 +117,11 @@ var newBullet = function(){
 			for(var i = 0; i < arrBulletY.length; i++){
 
 				if(!arrBulletY[i]){
-					arrBulletX[i] = xCucumber+24;
+					arrBulletX[i] = xCucumber+24-fullwidth;
 					arrBulletY[i] = 600;
 					break;
 				}else if(i === arrBulletY.length-1){
-					arrBulletX.push(xCucumber+24);
+					arrBulletX.push(xCucumber+24-fullwidth);
 					arrBulletY.push(600);
 					break;
 				}
@@ -168,7 +177,8 @@ var randomInteger = function(min, max){
 var ananasSpeed = 10000;
 var createAnanas = function(){
 	setTimeout(function(){
-		if(ananasSpeed > 1500)	ananasSpeed -= ananasSpeed/20;
+		if(ananasSpeed > 1500)	ananasSpeed -= (ananasSpeed/20 + strenght*300);
+		else ananasSpeed = 500;
 		createAnanas();
 
 		for(var i = 0; i < ananasX.length; i++){
@@ -183,7 +193,7 @@ var createAnanas = function(){
 			}
 		}
 		
-	}, randomInteger(1000,ananasSpeed));
+	}, randomInteger(500,ananasSpeed));
 }
 createAnanas();
 
@@ -192,7 +202,8 @@ var apricotSpeed = 10000;
 var createApricot = function(){
 	setTimeout(function(){
 
-		if(apricotSpeed > 1500)	apricotSpeed -= apricotSpeed/20;
+		if(apricotSpeed > 1500)	apricotSpeed -= (apricotSpeed/20 + strenght*300);
+		else apricotSpeed = 500;
 		createApricot();
 		for(var i = 0; i < apricotX.length; i++){
 			if(!apricotX[i]){
@@ -206,7 +217,7 @@ var createApricot = function(){
 			}
 		}
 
-	}, randomInteger(1000,apricotSpeed));
+	}, randomInteger(500,apricotSpeed));
 }
 createApricot();
 
@@ -217,8 +228,8 @@ var createEggplant = function(){
 	setTimeout(function(){		
 
 		createEggplant();
-		if(eggplantSpeed > 1500) eggplantSpeed -= eggplantSpeed/20;
-
+		if(eggplantSpeed > 1500) eggplantSpeed -= (eggplantSpeed/20 + strenght*300);
+		else eggplantSpeed = 500;
 
 
 		for(var i = 0; i < eggplantX.length; i++){
@@ -233,7 +244,7 @@ var createEggplant = function(){
 			}
 		}
 
-	}, randomInteger(1000,eggplantSpeed));
+	}, randomInteger(500,eggplantSpeed));
 }
 createEggplant();
 
@@ -335,8 +346,12 @@ var checkPower = function(){
 	else if(powerCucumber > 10000 && powerCucumber < 15000) {strenght = 3;}
 	else if(powerCucumber > 15000 && powerCucumber < 20000) {strenght = 4;}
 	else if(powerCucumber > 20000 && powerCucumber < 25000) {strenght = 5;}
-	else if(powerCucumber > 25000) strenght = 6;
-	if(powerCucumber > 35000) powerCucumber = 35000;
+	else if(powerCucumber > 25000 && powerCucumber < 5000) {strenght = 6;}
+	else if(powerCucumber > 30000 && powerCucumber < 10000) {strenght = 7;}
+	else if(powerCucumber > 35000 && powerCucumber < 15000) {strenght = 8;}
+	else if(powerCucumber > 40000 && powerCucumber < 20000) {strenght = 9;}
+	else if(powerCucumber > 45000 && powerCucumber < 25000) {strenght = 10;}
+	else if(powerCucumber > 50000) strenght = 11;
 }
 var checkLose = function(){
 	for(var i = 0; i < ananasX.length; i++){
@@ -381,5 +396,13 @@ gameLoop();
 
 
 
-
+function fullScreen(element) {
+  if(element.requestFullscreen) {
+    element.requestFullscreen();
+  } else if(element.webkitrequestFullscreen) {
+    element.webkitRequestFullscreen();
+  } else if(element.mozRequestFullscreen) {
+    element.mozRequestFullScreen();
+  }
+}
 
