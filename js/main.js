@@ -72,9 +72,9 @@ window.onmousemove = function(e){
 	}
 }
 window.ontouchmove = function(e){
-	if(e.changedTouches[0].clientY > 550){
-	mouse.y = e.changedTouches[0].clientY;
-	xCucumber = e.changedTouches[0].clientX-36;
+	if(e.changedTouches[0].offsetY > 550){
+	mouse.y = e.changedTouches[0].offsetY;
+	xCucumber = e.changedTouches[0].offsetX-36;
 	mouse.update();
 	}
 }
