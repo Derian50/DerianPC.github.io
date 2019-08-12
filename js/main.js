@@ -400,7 +400,7 @@ function gameLoop(){
 	if(powerCucumber > 100 && (!mouseDown || mouse.speedY < 2) && screen.width >= 800){
 		powerCucumber -= 50;
 	}
-	if(powerCucumber > 100 && (!mouseDown || mouse.speedY < 1) && screen.width >= 800){
+	if(powerCucumber > 100 && !mouseDown && screen.width < 800){
 		powerCucumber -= 25;
 	}
 	requestAnimationFrame(gameLoop);
