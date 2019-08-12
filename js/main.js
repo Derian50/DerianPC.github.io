@@ -26,6 +26,7 @@ imgJIOX_lose.src = 'img/JIOX_lose.jpg';
 
 ctx.fillStyle = "#ffff00"
 
+console.log('12.08.2019')
 
 var fullwidth = 0;
 if(screen.width > width){
@@ -72,9 +73,9 @@ window.onmousemove = function(e){
 	}
 }
 window.ontouchmove = function(e){
-	if(e.changedTouches[0].offsetY > 550){
-	mouse.y = e.changedTouches[0].offsetY;
-	xCucumber = e.changedTouches[0].offsetX-36;
+	if(e.changedTouches[0].clientY > 250){
+	mouse.y = e.changedTouches[0].clientY;
+	xCucumber = e.changedTouches[0].clientX-36;
 	mouse.update();
 	}
 }
@@ -177,8 +178,8 @@ var randomInteger = function(min, max){
 var ananasSpeed = 10000;
 var createAnanas = function(){
 	setTimeout(function(){
-		if(ananasSpeed > 1500)	ananasSpeed -= (ananasSpeed/20 + strenght*300);
-		else ananasSpeed = 500;
+		if(ananasSpeed > 1500)	ananasSpeed -= (ananasSpeed/50 + strenght*100);
+		else ananasSpeed = 1000;
 		createAnanas();
 
 		for(var i = 0; i < ananasX.length; i++){
@@ -202,8 +203,8 @@ var apricotSpeed = 10000;
 var createApricot = function(){
 	setTimeout(function(){
 
-		if(apricotSpeed > 1500)	apricotSpeed -= (apricotSpeed/20 + strenght*300);
-		else apricotSpeed = 500;
+		if(apricotSpeed > 1500)	apricotSpeed -= (apricotSpeed/50 + strenght*100);
+		else apricotSpeed = 1000;
 		createApricot();
 		for(var i = 0; i < apricotX.length; i++){
 			if(!apricotX[i]){
@@ -228,8 +229,8 @@ var createEggplant = function(){
 	setTimeout(function(){		
 
 		createEggplant();
-		if(eggplantSpeed > 1500) eggplantSpeed -= (eggplantSpeed/20 + strenght*300);
-		else eggplantSpeed = 500;
+		if(eggplantSpeed > 1500) eggplantSpeed -= (eggplantSpeed/50 + strenght*100);
+		else eggplantSpeed = 1000;
 
 
 		for(var i = 0; i < eggplantX.length; i++){
@@ -346,11 +347,11 @@ var checkPower = function(){
 	else if(powerCucumber > 10000 && powerCucumber < 15000) {strenght = 3;}
 	else if(powerCucumber > 15000 && powerCucumber < 20000) {strenght = 4;}
 	else if(powerCucumber > 20000 && powerCucumber < 25000) {strenght = 5;}
-	else if(powerCucumber > 25000 && powerCucumber < 5000) {strenght = 6;}
-	else if(powerCucumber > 30000 && powerCucumber < 10000) {strenght = 7;}
-	else if(powerCucumber > 35000 && powerCucumber < 15000) {strenght = 8;}
-	else if(powerCucumber > 40000 && powerCucumber < 20000) {strenght = 9;}
-	else if(powerCucumber > 45000 && powerCucumber < 25000) {strenght = 10;}
+	else if(powerCucumber > 25000 && powerCucumber < 30000) {strenght = 6;}
+	else if(powerCucumber > 30000 && powerCucumber < 35000) {strenght = 7;}
+	else if(powerCucumber > 35000 && powerCucumber < 40000) {strenght = 8;}
+	else if(powerCucumber > 40000 && powerCucumber < 45000) {strenght = 9;}
+	else if(powerCucumber > 45000 && powerCucumber < 50000) {strenght = 10;}
 	else if(powerCucumber > 50000) strenght = 11;
 }
 var checkLose = function(){
