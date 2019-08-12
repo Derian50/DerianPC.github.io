@@ -32,6 +32,9 @@ var fullwidth = 0;
 if(screen.width > width){
 	fullwidth = (screen.width-width)/2;
 }
+if(screen.width < 800){
+	height - 100
+}
 
 
 var mouse = {
