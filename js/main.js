@@ -48,7 +48,13 @@ var mouse = {
 		if(this.oldY === 9999) this.oldY = this.y;
 		this.speedY = Math.abs(this.y - this.oldY);
 		this.oldY = this.y;
-		powerCucumber+=this.speedY/1.5;
+		if(screen.width >= 800){
+			powerCucumber+=this.speedY/1.5;
+		}
+		if(screen.width < 800){
+			powerCucumber+=(this.speedY/1.5)*2;
+		}
+		
 	}
 };
 var powerCucumber = -700;
