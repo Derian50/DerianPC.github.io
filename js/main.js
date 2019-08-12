@@ -387,6 +387,8 @@ var checkLose = function(){
 	}
 }
 function gameLoop(){
+	
+	console.log(mouseDown)
 	ctx.clearRect(0,0,width,height);
 
 	drawPowerSpeed();
