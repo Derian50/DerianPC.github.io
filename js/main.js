@@ -187,8 +187,8 @@ var randomInteger = function(min, max){
 var ananasSpeed = 10000;
 var createAnanas = function(){
 	setTimeout(function(){
-		if(ananasSpeed > 1500)	ananasSpeed -= (ananasSpeed/50 + strenght*100);
-		else ananasSpeed = 1000;
+		if(ananasSpeed > 1000)	ananasSpeed -= (ananasSpeed/20 + strenght*100);
+		else ananasSpeed = 501;
 		createAnanas();
 
 		for(var i = 0; i < ananasX.length; i++){
@@ -212,8 +212,8 @@ var apricotSpeed = 10000;
 var createApricot = function(){
 	setTimeout(function(){
 
-		if(apricotSpeed > 1500)	apricotSpeed -= (apricotSpeed/50 + strenght*100);
-		else apricotSpeed = 1000;
+		if(apricotSpeed > 1000)	apricotSpeed -= (apricotSpeed/20 + strenght*100);
+		else apricotSpeed = 500;
 		createApricot();
 		for(var i = 0; i < apricotX.length; i++){
 			if(!apricotX[i]){
@@ -238,8 +238,8 @@ var createEggplant = function(){
 	setTimeout(function(){		
 
 		createEggplant();
-		if(eggplantSpeed > 1500) eggplantSpeed -= (eggplantSpeed/50 + strenght*100);
-		else eggplantSpeed = 1000;
+		if(eggplantSpeed > 1000) eggplantSpeed -= (eggplantSpeed/20 + strenght*100);
+		else eggplantSpeed = 500;
 
 
 		for(var i = 0; i < eggplantX.length; i++){
@@ -387,8 +387,7 @@ var checkLose = function(){
 	}
 }
 function gameLoop(){
-	
-	console.log(mouseDown)
+
 	ctx.clearRect(0,0,width,height);
 
 	drawPowerSpeed();
